@@ -1,0 +1,53 @@
+<form style="margin-top: 20px" [formGroup]="submitForm" (submit)="onSubmit(form)">
+  <input type="hidden" name ="id"  [value]="service.formData.id">
+  <div class="row">
+    <div class="col">
+      <label for="ownerName">Card Owner Name</label>
+      <input type="text" class="form-control" id="ownerName" placeholder="Full Name" name="ownerName"
+              [(ngModel)]="service.formData.ownerName" formControlName="ownName">
+    </div>
+    <div class="col">
+      <label for="cardNumber">Card Number</label>
+      <input (ngModelChange)="changeCardNumber($event)" style="position: relative" type="text" class="form-control" id="cardNumber" placeholder="Card Number" name="cardNumber"
+              [(ngModel)]="service.formData.cardNumber" formControlName="carNumber" maxlength="16">
+      <img style="margin-left: 87%; margin-top: -35px; position: absolute; width: 40px;height: 30px;" src="{{oneOfThem}}">
+    </div>
+  </div>
+  <div class="row" style="margin-top: 20px">
+    <div class="col">
+      <label for="securityCode">Security Code</label>
+      <input type="text" id="securityCode" class="form-control" placeholder="Security Code" name="securityCode"
+             [(ngModel)]="service.formData.securityCode" formControlName="securityC" maxlength="3">
+    </div>
+    <div class="col">
+      <label for="validateDate">Expiring Date</label>
+      <input (ngModelChange)="changeValidateDate($event)" class="form-control" id="validateDate" placeholder="MM/YY" name="validateDate"
+              [(ngModel)]="service.formData.validateDate" formControlName="validateD" maxlength="5">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-lg" style="background-color: #222D52;color: white; margin-top: 20px;width: 250px; margin-left: 40%;border-radius: 45px" [disabled]="submitForm.invalid" > Submit</button>
+</form>
+
+<table class="table" style="margin-top: 20px;border: 1px solid #E5E5E5">
+  <thead class="thead-primary" style="background-color: #8DBCD6;color:#000000">
+  <tr>
+    <th scope="col">Card Owner</th>
+    <th scope="col">Card Number</th>
+    <th scope="col">Expiration Date</th>
+    <th scope="col"></th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let pd of service.list">
+    <td (click)="pupulateForm(pd)"> {{pd.ownerName}}</td>
+    <td (click)="pupulateForm(pd)">{{pd.cardNumber}}</td>
+    <td (click)="pupulateForm(pd)">{{pd.validateDate}}</td>
+    <td>
+      <i class="far fa-trash-alt fa-lg text-danger" (click)="onDelete(pd.id)"></i>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
+
+
