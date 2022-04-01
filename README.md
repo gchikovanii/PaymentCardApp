@@ -1,5 +1,7 @@
 # PaymentCardApp
-This is a payemnt card Application. 
+This is a payemnt card web Application. 
 Adds a card into database!
-Updates and Deletes Card!
-Writed on (Asp.net core , Angular and Mssql)
+Updates card information!
+Deletes card!
+Chek's which type of card is it (ex Visa, Mastercard) and etc...
+
